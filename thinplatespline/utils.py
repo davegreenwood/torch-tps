@@ -37,6 +37,7 @@ def grid_to_img(grid_points, width, height):
     convert (N * 2) tensor of grid points in -1, 1 to tuple of (x, y)
     scaled to width, height.
     return (x, y) to plot"""
-    x = (1 + grid_points[..., 0]) * (width - 1) / 2
-    y = (1 + grid_points[..., 1]) * (height - 1) / 2
-    return x.clone().cpu().numpy().flatten(), y.clone().cpu().numpy().flatten()
+    grid_clone = grid_points.clone().cpu().numpy()
+    x = (1 + grid_clone[..., 0]) * (width - 1) / 2
+    y = (1 + grid_clone[..., 1]) * (height - 1) / 2
+    return x.flatten(), y.flatten()
