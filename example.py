@@ -19,6 +19,8 @@ w, h = img.size
 dense_grid = grid_points_2d(w, h, DEVICE)
 X = grid_points_2d(7, 11, DEVICE)
 Y = noisy_grid(7, 11, 0.15, DEVICE)
+x1, y1 = grid_to_img(X, w, h)
+x2, y2 = grid_to_img(Y, w, h)
 t1 = time.time()
 
 print(f"time: {t1-t0:0.3f}", "created variables")
@@ -41,9 +43,6 @@ print(f"time: {t1-t0:0.3f}", "warped image")
 img_wrp = TOPIL(ten_wrp.reshape(3, h, w).cpu())
 
 # %%
-
-x1, y1 = grid_to_img(X, w, h)
-x2, y2 = grid_to_img(Y, w, h)
 
 fig, ax = plt.subplots(1, 2, figsize=[9, 7], sharey=True)
 ax[0].imshow(img)
