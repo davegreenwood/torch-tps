@@ -1,0 +1,13 @@
+*
+
+!.gitignore
+!README.md
+!setup.py
+!example.py
+
+!fig/
+!fig/plot.jpg
+
+!thinplatespline/
+!thinplatespline/tps.py
+!thinplatespline/utils.py
