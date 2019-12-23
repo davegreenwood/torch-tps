@@ -10,7 +10,7 @@ from thinplatespline.utils import (TOTEN, TOPIL,
         grid_points_2d, noisy_grid, grid_to_img)
 
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(DEVICE)
 
 t0 = time.time()
