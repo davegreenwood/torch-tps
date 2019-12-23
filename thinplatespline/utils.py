@@ -18,7 +18,7 @@ def grid_points_2d(width, height, device=DEVICE):
     xx, yy = torch.meshgrid(
         [torch.linspace(-1.0, 1.0, height, device=device),
          torch.linspace(-1.0, 1.0, width, device=device)])
-    return torch.stack([yy, xx], dim=-1).reshape(-1, 2)
+    return torch.stack([yy, xx], dim=-1).contiguous().view(-1, 2)
 
 
 def noisy_grid(width, height, noise_scale=0.1, device=DEVICE):
