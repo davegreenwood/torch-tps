@@ -39,4 +39,4 @@ def grid_to_img(grid_points, width, height):
     return (x, y) to plot"""
     x = (1 + grid_points[..., 0]) * (width - 1) / 2
     y = (1 + grid_points[..., 1]) * (height - 1) / 2
-    return x.cpu().numpy().flatten(), y.cpu().numpy().flatten()
+    return x.clone().cpu().numpy().flatten(), y.clone().cpu().numpy().flatten()
