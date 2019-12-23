@@ -38,7 +38,7 @@ ten_wrp = torch.grid_sampler_2d(
 t1 = time.time()
 print(f"time: {t1-t0:0.3f}", "warped image")
 
-img_wrp = TOPIL(ten_wrp.reshape(3, h, w))
+img_wrp = TOPIL(ten_wrp.reshape(3, h, w).cpu())
 
 # %%
 
@@ -47,9 +47,9 @@ x2, y2 = grid_to_img(Y, w, h)
 
 fig, ax = plt.subplots(1, 2, figsize=[9, 7], sharey=True)
 ax[0].imshow(img)
-ax[0].plot(x1, y1, "+g", ms=15, mew=2, label="uniform")
+ax[0].plot(x1.cpu(), y1.cpu(), "+g", ms=15, mew=2, label="uniform")
 ax[0].legend(loc=1)
-ax[1].plot(x2, y2, "+r", ms=15, mew=2, label="target")
+ax[1].plot(x2.cpu(), y2.cpu(), "+r", ms=15, mew=2, label="target")
 ax[1].imshow(img_wrp)
 ax[1].legend(loc=1)
 plt.tight_layout()
