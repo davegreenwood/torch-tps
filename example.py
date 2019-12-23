@@ -18,7 +18,7 @@ img = Image.open("boris_johnson.jpg")
 w, h = img.size
 dense_grid = grid_points_2d(w, h, DEVICE)
 X = grid_points_2d(7, 11, DEVICE)
-Y = noisy_grid(7, 11, 0.15)
+Y = noisy_grid(7, 11, 0.15, DEVICE)
 t1 = time.time()
 
 print(f"time: {t1-t0:0.3f}", "created variables")
