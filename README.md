@@ -13,7 +13,7 @@ Implementation of Thin-Plate-Splines (TPS) in PyTorch.
 
 there is an example included:
 
-    python test.py
+    python example.py
 
 ## Limitations
 
