@@ -46,6 +46,7 @@ def P_matrix(X):
     """
     n, k = X.shape[:2]
     device = X.device
+
     P = torch.ones(n, k, 3, device=device)
     P[:, :, 1:] = X
     return P
@@ -73,6 +74,7 @@ class TPS_coeffs(torch.nn.Module):
 
         n, k = X.shape[:2]
         device = X.device
+
         Z = torch.zeros(1, k + 3, 2, device=device)
         P = torch.ones(n, k, 3, device=device)
         L = torch.zeros(n, k + 3, k + 3, device=device)
@@ -118,8 +120,8 @@ class TPS(torch.nn.Module):
         self.device = device
         self.tps = TPS_coeffs()
         self.grid = torch.ones(1, H, W, 2, device=device)
-        self.grid[:, :, :, 0] = torch.linspace(0, 1, W)
-        self.grid[:, :, :, 1] = torch.linspace(0, 1, H)[..., None]
+        self.grid[:, :, :, 0] = torch.linspace(-1, 1, W)
+        self.grid[:, :, :, 1] = torch.linspace(-1, 1, H)[..., None]
 
     def forward(self, X, Y):
         """Override abstract function."""
