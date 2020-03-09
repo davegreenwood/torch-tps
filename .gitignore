@@ -9,6 +9,10 @@
 !fig/
 !fig/plot.jpg
 
+!tests/
+!tests/test_tps.py
+
 !thinplatespline/
 !thinplatespline/tps.py
 !thinplatespline/utils.py
+!thinplatespline/batch.py
