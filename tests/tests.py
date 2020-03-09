@@ -4,7 +4,6 @@ import torch
 from thinplatespline.batch import (
     K_matrix as K_batch, P_matrix as P_batch, TPS, TPS_coeffs)
 from thinplatespline.tps import K_matrix, P_matrix, tps_coefs
-from thinplatespline.utils import grid_points_2d
 
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
