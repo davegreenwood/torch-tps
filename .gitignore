@@ -10,7 +10,7 @@
 !fig/plot.jpg
 
 !tests/
-!tests/test_tps.py
+!tests/tests.py
 
 !thinplatespline/
 !thinplatespline/tps.py
