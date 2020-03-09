@@ -19,13 +19,10 @@ def K_matrix(X, Y):
     K : torch.tensor
     """
 
-    device = X.device
+    eps = 1e-9
 
-    D = torch.sqrt(
-        torch.pow(X[:, :, None, :] - Y[:, None, :, :], 2).sum(-1) + 1e-9)
-    D2 = D * D
-    D2[torch.isclose(D2, torch.zeros(1, device=device))] = 1.0
-    K = D * D * torch.log(D2)
+    D2 = torch.pow(X[:, :, None, :] - Y[:, None, :, :], 2).sum(-1) + eps
+    K = D2 * torch.log(D2)
     return K
 
 
@@ -116,18 +113,20 @@ class TPS(torch.nn.Module):
 
     def __init__(self, size: tuple = (256, 256), device=DEVICE):
         super().__init__()
-        H, W = size
+        h, w = size
+        self.size = size
         self.device = device
         self.tps = TPS_coeffs()
-        self.grid = torch.ones(1, H, W, 2, device=device)
-        self.grid[:, :, :, 0] = torch.linspace(-1, 1, W)
-        self.grid[:, :, :, 1] = torch.linspace(-1, 1, H)[..., None]
+        grid = torch.ones(1, h, w, 2, device=device)
+        grid[:, :, :, 0] = torch.linspace(-1, 1, w)
+        grid[:, :, :, 1] = torch.linspace(-1, 1, h)[..., None]
+        self.grid = grid.view(-1, h*w, 2)
 
     def forward(self, X, Y):
         """Override abstract function."""
-        h, w = self.grid.shape[1:3]
+        h, w = self.size
         W, A = self.tps(X, Y)
-        U = K_matrix(self.grid.view(-1, h*w, 2), X)
-        P = P_matrix(self.grid.view(-1, h*w, 2))
+        U = K_matrix(self.grid, X)
+        P = P_matrix(self.grid)
         grid = P @ A + U @ W
         return grid.view(-1, h, w, 2)
