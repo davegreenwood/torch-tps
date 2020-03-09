@@ -1,6 +1,5 @@
 """
 Evaluate the thin-plate-spline (TPS) at xy locations arranged in a grid.
-
 """
 
 # implementation following numpy version:
@@ -60,10 +59,9 @@ def K_matrix(X, Y):
     r = cdist(X, Y)
     if X.shape[-1] == 2:
         r_sqd = r * r
-        r_sqd_cl = r_sqd.clone()
-        zeros = torch.zeros_like(r_sqd_cl)
-        r_sqd_cl[torch.isclose(r_sqd_cl, zeros)] = 1.0
-        return r_sqd * torch.log(r_sqd_cl)
+        zero = torch.zeros(1, device=r.device)
+        r_sqd[torch.isclose(r_sqd, zero)] = 1.0
+        return r * r * torch.log(r_sqd)
     return r
 
 

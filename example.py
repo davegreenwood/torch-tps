@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 from thinplatespline.tps import tps_warp
-from thinplatespline.utils import (TOTEN, TOPIL,
-        grid_points_2d, noisy_grid, grid_to_img)
+from thinplatespline.utils import (
+    TOTEN, TOPIL, grid_points_2d, noisy_grid, grid_to_img)
 
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
