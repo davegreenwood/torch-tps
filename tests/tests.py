@@ -63,7 +63,3 @@ class TestTPS(unittest.TestCase):
         yb = torch.stack([y] * 1)
         grid = warp(xb, yb)
         self.assertTrue(grid.shape == (n, h, w, d))
-
-
-if __name__ == "__main__":
-    unittest.main(verbosity=2)

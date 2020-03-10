@@ -21,8 +21,8 @@ def K_matrix(X, Y):
 
     eps = 1e-9
 
-    D2 = torch.pow(X[:, :, None, :] - Y[:, None, :, :], 2).sum(-1) + eps
-    K = D2 * torch.log(D2)
+    D2 = torch.pow(X[:, :, None, :] - Y[:, None, :, :], 2).sum(-1)
+    K = D2 * torch.log(D2 + eps)
     return K
 
 
