@@ -17,4 +17,4 @@ there is an example included:
 
 ## Limitations
 
-Batch processing not implemented yet.
+Batch processing is implemented and is shown in the example.
